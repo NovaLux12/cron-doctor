@@ -1,26 +1,32 @@
 # cron-doctor
 
-Single-binary CLI that audits OpenClaw cron and heartbeat health. Reads your `openclaw.json`, validates cron schedules, checks models/providers, flags stale jobs and delivery anomalies. Zero dependencies, stdlib only, builds to a static binary.
+[![CI](https://github.com/NovaLux12/cron-doctor/actions/workflows/ci.yml/badge.svg)](https://github.com/NovaLux12/cron-doctor/actions/workflows/ci.yml) [![Release](https://img.shields.io/github/v/release/NovaLux12/cron-doctor)](https://github.com/NovaLux12/cron-doctor/releases) [![Go version](https://img.shields.io/github/go-mod/go-version/NovaLux12/cron-doctor)](https://go.dev/) [![License: MIT](https://img.shields.io/github/license/NovaLux12/cron-doctor)](LICENSE)
 
+Single-binary CLI that audits OpenClaw cron and heartbeat health. Reads your `openclaw.json`, validates cron schedules, checks models/providers, flags stale jobs and delivery anomalies. Zero dependencies, stdlib only, builds to a static binary.
 ## Install
+
+### Via go install (requires Go 1.22+)
+
+```bash
+go install github.com/NovaLux12/cron-doctor@latest
+```
 
 ### From source
 
 ```bash
-git clone https://github.com/novalux12/cron-doctor
+git clone https://github.com/NovaLux12/cron-doctor
 cd cron-doctor
 go build -o cron-doctor .
 # optional
 sudo install -m 0755 cron-doctor /usr/local/bin/cron-doctor
 ```
 
-Requires Go 1.22+.
+Requires Go 1.22+. No runtime dependencies — stdlib only, static binary.
 
 ### Quick run without installing
 
 ```bash
 go run . --help
-go run . --config ~/.openclaw/openclaw.json --format json | jq .
 ```
 
 ## Usage
@@ -37,7 +43,6 @@ Flags:
   --verbose         include OK findings
   --version         print version and exit
 ```
-
 ### Examples
 
 ```bash
@@ -141,6 +146,13 @@ go build -o cron-doctor .
 - `check.go` — all audits + `discoverCronJobs` + config resolution
 - `cron.go` — 5-field cron + `every`/`at` validation, no external deps
 - `render.go` — table/json/markdown renderers
+
+## Related
+
+- [fleet-pulse](https://github.com/NovaLux12/fleet-pulse) — unified fleet health pulse (stale pushes, Dependabot, CI, release gaps) — same stdlib-only, single-binary philosophy. Uses `GH_TOKEN` / `GITHUB_TOKEN` for GitHub API access.
+- [gh-digest](https://github.com/NovaLux12/gh-digest) — per-owner repo digest (issues, PRs, releases) — the original companion tool. Also uses `GH_TOKEN` / `GITHUB_TOKEN`.
+
+> **Note:** `cron-doctor` is local-only and needs no GitHub token. `fleet-pulse` and `gh-digest` read the GitHub API and respect `GH_TOKEN` (preferred) with `GITHUB_TOKEN` fallback — set either for 5000 req/h (vs 60/h unauthenticated).
 
 ## License
 
