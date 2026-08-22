@@ -5,6 +5,8 @@
 Single-binary CLI that audits OpenClaw cron and heartbeat health. Reads your `openclaw.json`, validates cron schedules, checks models/providers, flags stale jobs and delivery anomalies. Zero dependencies, stdlib only, builds to a static binary.
 ## Install
 
+- **Pre-built binaries**: download from [releases](https://github.com/NovaLux12/cron-doctor/releases/latest) — linux/amd64+arm64, darwin/amd64+arm64, windows/amd64 (+SHA256SUMS)
+
 ### Via go install (requires Go 1.22+)
 
 ```bash
