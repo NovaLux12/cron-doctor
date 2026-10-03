@@ -1,3 +1,3 @@
 module github.com/NovaLux12/cron-doctor
 
-go 1.22
+go 1.26
