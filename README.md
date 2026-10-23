@@ -7,7 +7,7 @@ Single-binary CLI that audits OpenClaw cron and heartbeat health. Reads your `op
 
 - **Pre-built binaries**: download from [releases](https://github.com/NovaLux12/cron-doctor/releases/latest) — linux/amd64+arm64, darwin/amd64+arm64, windows/amd64 (+SHA256SUMS)
 
-### Via go install (requires Go 1.22+)
+### Via go install (requires Go 1.26+)
 
 ```bash
 go install github.com/NovaLux12/cron-doctor@latest
@@ -23,7 +23,7 @@ go build -o cron-doctor .
 sudo install -m 0755 cron-doctor /usr/local/bin/cron-doctor
 ```
 
-Requires Go 1.22+. No runtime dependencies — stdlib only, static binary.
+Requires Go 1.26+. No runtime dependencies — stdlib only, static binary.
 
 ### Quick run without installing
 
