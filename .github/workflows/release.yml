@@ -21,13 +21,15 @@ jobs:
           cache: true
 
       - name: Build (all platforms)
+        env:
+          CGO_ENABLED: 0
         run: |
           mkdir -p dist
-          GOOS=linux  GOARCH=amd64 go build -o dist/cron-doctor-linux-amd64   .
-          GOOS=linux  GOARCH=arm64 go build -o dist/cron-doctor-linux-arm64   .
-          GOOS=darwin GOARCH=amd64 go build -o dist/cron-doctor-darwin-amd64  .
-          GOOS=darwin GOARCH=arm64 go build -o dist/cron-doctor-darwin-arm64  .
-          GOOS=windows GOARCH=amd64 go build -o dist/cron-doctor-windows-amd64.exe .
+          GOOS=linux  GOARCH=amd64 CGO_ENABLED=0 go build -o dist/cron-doctor-linux-amd64   .
+          GOOS=linux  GOARCH=arm64 CGO_ENABLED=0 go build -o dist/cron-doctor-linux-arm64   .
+          GOOS=darwin GOARCH=amd64 CGO_ENABLED=0 go build -o dist/cron-doctor-darwin-amd64  .
+          GOOS=darwin GOARCH=arm64 CGO_ENABLED=0 go build -o dist/cron-doctor-darwin-arm64  .
+          GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build -o dist/cron-doctor-windows-amd64.exe .
 
       - name: Checksums
         run: |
